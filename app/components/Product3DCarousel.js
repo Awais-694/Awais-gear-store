@@ -40,8 +40,6 @@ export default function Product3DCarousel({ products, userRole }) {
   };
 
   const handleDeleteProduct = async (product) => {
-    const confirmDelete = confirm("Awais Bhai, kya aap waqai yeh item store se hatana chahte hain?");
-    if (!confirmDelete) return;
     try {
       const res = await fetch(`/api/products/${product._id}`, {
         method: "DELETE"
@@ -49,7 +47,7 @@ export default function Product3DCarousel({ products, userRole }) {
       const data = await res.json();
       if (data.success) {
         window.dispatchEvent(new CustomEvent("show-toast", {
-          detail: { message: "Product safely removed from inventory!", type: "success" }
+          detail: { message: "Product successfully deleted from MongoDB & Cloudinary! 🗑️", type: "success" }
         }));
         router.refresh();
       } else {
