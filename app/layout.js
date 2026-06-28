@@ -102,9 +102,33 @@ export default async function RootLayout({ children }) {
           {children}
         </main>
 
-        {/* 📌 Permanent Structural Footer component template details layout */}
-        <footer className="bg-gray-900 text-gray-400 text-center py-8 border-t border-gray-800 text-xs font-medium">
-          <p>© 2026 Awais Engineering Core. Protected under HttpOnly Session Cookie Protocol.</p>
+        {/* 📌 Professional Multi-Column Store Footer */}
+        <footer className="bg-white border-t border-gray-100 py-12 mt-16 text-gray-500">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-3">
+              <h4 className="text-xs font-black tracking-widest text-black uppercase">AWAIS PREMIUM</h4>
+              <p className="text-[11px] leading-relaxed max-w-xs text-gray-400 font-medium">
+                Your premium destination for custom streetwear, t-shirts, and minimalist fashion items built with premium quality materials.
+              </p>
+            </div>
+            <div className="space-y-2 text-[11px] font-bold uppercase tracking-wider">
+              <h4 className="text-xs font-black text-black mb-2 tracking-wider">QUICK LINKS</h4>
+              <div className="flex flex-col gap-2">
+                <Link href="/" className="hover:text-black transition-colors">Home</Link>
+                <Link href="/?filter=new" className="hover:text-black transition-colors">New Arrivals</Link>
+                <Link href="/?category=T-Shirt" className="hover:text-black transition-colors">T-Shirts</Link>
+              </div>
+            </div>
+            <div className="space-y-3 text-[11px] font-medium text-gray-400">
+              <h4 className="text-xs font-black text-black uppercase tracking-wider">SECURE SHOPPING</h4>
+              <p className="leading-relaxed">
+                Safe payment processing, fast worldwide delivery, and dedicated customer support.
+              </p>
+              <div className="text-[10px] text-gray-400 font-medium pt-1">
+                © {new Date().getFullYear()} Awais Premium Store. All Rights Reserved.
+              </div>
+            </div>
+          </div>
         </footer>
 
         {/* Global Toast Notification System */}

@@ -36,19 +36,19 @@ export default async function StoreHomePage() {
   return (
     <div className="space-y-8 py-4">
       {/* Hero Store Banner Canvas Segment */}
-      <header className="bg-gradient-to-r from-gray-950 to-neutral-900 text-white p-8 rounded-3xl relative overflow-hidden border border-gray-800 shadow-sm">
-        <div className="relative z-10 max-w-lg space-y-3">
-          <span className="text-[10px] bg-white/10 text-gray-300 font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-white/15">
-            SUMMER COLLECTION 2026
+      <header className="bg-gradient-to-r from-black via-neutral-900 to-zinc-950 text-white p-8 md:p-12 rounded-3xl relative overflow-hidden shadow-md border border-neutral-900">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.03),transparent)] pointer-events-none" />
+        <div className="relative z-10 max-w-xl space-y-4">
+          <span className="inline-block text-[9px] bg-white/10 text-white font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-white/10">
+            Premium Streetwear Collection
           </span>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">
-            Minimalist Streetwear & Elite Custom Gear
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight uppercase">
+            Bold Designs. <br className="hidden md:inline" />Zero Limits.
           </h1>
-          <p className="text-xs text-gray-400 font-medium leading-relaxed">
-            Premium, comfortable, and specialized apparel designed explicitly for elite developers, designers, and system architects.
+          <p className="text-xs md:text-sm text-neutral-400 font-medium leading-relaxed max-w-md">
+            Express your attitude with premium custom-crafted T-shirts, caps, and minimalist urban gear. Engineered for absolute comfort, tailored for the streets.
           </p>
         </div>
-        <div className="absolute top-0 right-0 h-full w-1/3 bg-radial from-white/5 to-transparent pointer-events-none" />
       </header>
 
       {/* Modern Catalog View Hub */}
