@@ -52,7 +52,7 @@ export default function ProductCard({ product, userRole }) {
   };
 
   return (
-    <div className="flex flex-col group justify-between h-full bg-white p-2.5 rounded-xl border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-200 reveal opacity-0 translate-y-4">
+    <div className="flex flex-col group justify-between h-full bg-white p-2.5 rounded-xl border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-200 animate-fade-in">
       
       {/* Product Image Container */}
       <div className="relative bg-gray-50 aspect-[3/4] w-full overflow-hidden rounded-lg">

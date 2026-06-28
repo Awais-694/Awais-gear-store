@@ -381,7 +381,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
             <div className="block md:hidden space-y-12">
               {/* T-Shirts Slider Section */}
               {tShirts.length > 0 && (
-                <div className="space-y-3 reveal opacity-0 translate-y-4">
+                <div className="space-y-3 animate-fade-in">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>👕 T-Shirts Collection</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{tShirts.length} items</span>
@@ -392,7 +392,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
 
               {/* Hoodies Slider Section */}
               {hoodies.length > 0 && (
-                <div className="space-y-3 reveal opacity-0 translate-y-4">
+                <div className="space-y-3 animate-fade-in">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>🧥 Hoodies Collection</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{hoodies.length} items</span>
@@ -403,7 +403,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
 
               {/* Caps Slider Section */}
               {caps.length > 0 && (
-                <div className="space-y-3 reveal opacity-0 translate-y-4">
+                <div className="space-y-3 animate-fade-in">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>🧢 Caps Collection</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{caps.length} items</span>
@@ -414,7 +414,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
 
               {/* Other Items Section */}
               {otherProducts.length > 0 && (
-                <div className="space-y-3 reveal opacity-0 translate-y-4">
+                <div className="space-y-3 animate-fade-in">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>📦 More Merchandise</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{otherProducts.length} items</span>
