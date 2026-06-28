@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import NavbarUser from "./components/NavbarUser";
 import NavbarCart from "./components/NavbarCart";
 import Toast from "./components/Toast";
+import ScrollReveal from "./components/ScrollReveal";
 
 const interFont = Inter({ subsets: ["latin"] });
 
@@ -61,10 +62,10 @@ export default async function RootLayout({ children }) {
                       👕 T-Shirts
                     </Link>
                     <Link
-                      href="/?category=Jeans"
+                      href="/?category=Hoodie"
                       className="block px-4 py-2 text-[10px] font-extrabold uppercase tracking-wider text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg hover:translate-x-1 transition-all"
                     >
-                      👖 Jeans
+                      🧥 Hoodies
                     </Link>
                     <Link
                       href="/?category=Caps"
@@ -133,6 +134,9 @@ export default async function RootLayout({ children }) {
 
         {/* Global Toast Notification System */}
         <Toast />
+
+        {/* Global Scroll Animation Trigger System */}
+        <ScrollReveal />
 
       </body>
     </html>

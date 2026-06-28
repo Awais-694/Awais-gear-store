@@ -63,7 +63,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
   ];
 
   // Mock categories list
-  const categories = ["All", "T-Shirt", "Shirt", "Jeans", "Jackets", "Caps"];
+  const categories = ["All", "T-Shirt", "Shirt", "Hoodie", "Caps"];
 
   // Toggle size selection
   const handleSizeToggle = (size) => {
@@ -125,13 +125,17 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
     return filteredProducts.filter((p) => p.category?.toLowerCase() === "t-shirt");
   }, [filteredProducts]);
 
+  const hoodies = useMemo(() => {
+    return filteredProducts.filter((p) => p.category?.toLowerCase() === "hoodie");
+  }, [filteredProducts]);
+
   const caps = useMemo(() => {
     return filteredProducts.filter((p) => p.category?.toLowerCase() === "caps");
   }, [filteredProducts]);
 
   const otherProducts = useMemo(() => {
     return filteredProducts.filter(
-      (p) => p.category?.toLowerCase() !== "t-shirt" && p.category?.toLowerCase() !== "caps"
+      (p) => p.category?.toLowerCase() !== "t-shirt" && p.category?.toLowerCase() !== "caps" && p.category?.toLowerCase() !== "hoodie"
     );
   }, [filteredProducts]);
 
@@ -373,11 +377,11 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
               </div>
             </div>
 
-            {/* 📱 Mobile Display: Split into T-Shirts and Caps 3D Sliders */}
+            {/* 📱 Mobile Display: Split into T-Shirts, Hoodies and Caps 3D Sliders with scroll reveal */}
             <div className="block md:hidden space-y-12">
               {/* T-Shirts Slider Section */}
               {tShirts.length > 0 && (
-                <div className="space-y-3">
+                <div className="space-y-3 reveal opacity-0 translate-y-4">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>👕 T-Shirts Collection</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{tShirts.length} items</span>
@@ -386,9 +390,20 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
                 </div>
               )}
 
+              {/* Hoodies Slider Section */}
+              {hoodies.length > 0 && (
+                <div className="space-y-3 reveal opacity-0 translate-y-4">
+                  <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
+                    <span>🧥 Hoodies Collection</span>
+                    <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{hoodies.length} items</span>
+                  </h3>
+                  <Product3DCarousel products={hoodies} userRole={userRole} />
+                </div>
+              )}
+
               {/* Caps Slider Section */}
               {caps.length > 0 && (
-                <div className="space-y-3">
+                <div className="space-y-3 reveal opacity-0 translate-y-4">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>🧢 Caps Collection</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{caps.length} items</span>
@@ -397,9 +412,9 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
                 </div>
               )}
 
-              {/* Other Items Section (Jeans, Jackets, Shirts if any) */}
+              {/* Other Items Section */}
               {otherProducts.length > 0 && (
-                <div className="space-y-3">
+                <div className="space-y-3 reveal opacity-0 translate-y-4">
                   <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
                     <span>📦 More Merchandise</span>
                     <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{otherProducts.length} items</span>

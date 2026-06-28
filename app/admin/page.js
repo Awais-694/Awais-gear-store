@@ -177,7 +177,7 @@ function AdminDashboardContent() {
     Olive: "#808000",
     Maroon: "#800000"
   };
-  const categoryOptions = ["T-Shirt", "Shirt", "Jeans", "Jackets", "Caps"];
+  const categoryOptions = ["T-Shirt", "Shirt", "Hoodie", "Caps"];
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 py-2">
