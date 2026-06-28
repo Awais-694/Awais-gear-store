@@ -121,6 +121,20 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
     });
   }, [initialProducts, searchQuery, selectedCategory, selectedSizes, selectedColors, availability, filterNew]);
 
+  const tShirts = useMemo(() => {
+    return filteredProducts.filter((p) => p.category?.toLowerCase() === "t-shirt");
+  }, [filteredProducts]);
+
+  const caps = useMemo(() => {
+    return filteredProducts.filter((p) => p.category?.toLowerCase() === "caps");
+  }, [filteredProducts]);
+
+  const otherProducts = useMemo(() => {
+    return filteredProducts.filter(
+      (p) => p.category?.toLowerCase() !== "t-shirt" && p.category?.toLowerCase() !== "caps"
+    );
+  }, [filteredProducts]);
+
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* 🌪️ LEFT FILTER SIDEBAR */}
@@ -339,7 +353,7 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
           })}
         </div>
 
-        {/* 📦 INVENTORY GRID / 3D CAROUSEL */}
+        {/* 📦 INVENTORY GRID / 3D CAROUSELS */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-20 border border-dashed rounded-3xl bg-white space-y-3">
             <p className="text-gray-400 font-bold text-sm">Filhal store par koi products filtered nahi hain.</p>
@@ -359,9 +373,40 @@ export default function ProductsCatalog({ initialProducts, userRole }) {
               </div>
             </div>
 
-            {/* 📱 Mobile Display: Always render the modern 3D Slider Carousel */}
-            <div className="block md:hidden">
-              <Product3DCarousel products={filteredProducts} userRole={userRole} />
+            {/* 📱 Mobile Display: Split into T-Shirts and Caps 3D Sliders */}
+            <div className="block md:hidden space-y-12">
+              {/* T-Shirts Slider Section */}
+              {tShirts.length > 0 && (
+                <div className="space-y-3">
+                  <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
+                    <span>👕 T-Shirts Collection</span>
+                    <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{tShirts.length} items</span>
+                  </h3>
+                  <Product3DCarousel products={tShirts} userRole={userRole} />
+                </div>
+              )}
+
+              {/* Caps Slider Section */}
+              {caps.length > 0 && (
+                <div className="space-y-3">
+                  <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
+                    <span>🧢 Caps Collection</span>
+                    <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{caps.length} items</span>
+                  </h3>
+                  <Product3DCarousel products={caps} userRole={userRole} />
+                </div>
+              )}
+
+              {/* Other Items Section (Jeans, Jackets, Shirts if any) */}
+              {otherProducts.length > 0 && (
+                <div className="space-y-3">
+                  <h3 className="text-xs font-black uppercase tracking-wider text-black pl-1.5 flex items-center gap-2">
+                    <span>📦 More Merchandise</span>
+                    <span className="text-[9px] bg-gray-150 text-gray-500 font-black px-2 py-0.5 rounded-full">{otherProducts.length} items</span>
+                  </h3>
+                  <Product3DCarousel products={otherProducts} userRole={userRole} />
+                </div>
+              )}
             </div>
           </>
         )}
