@@ -44,20 +44,20 @@ export default function NavbarUser({ user }) {
   const displayName = user.email ? user.email.split("@")[0] : "User";
 
   return (
-    <div className="flex items-center gap-4 bg-gray-50 border border-gray-150 pl-3 pr-2 py-1.5 rounded-xl hover:bg-gray-100/80 transition-all duration-200">
-      <div className="flex items-center gap-1.5">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span className="text-xs text-gray-700 font-extrabold capitalize select-none">
-          👤 {displayName}
+    <div className="flex items-center gap-1.5 sm:gap-3 bg-gray-50 border border-gray-100 pl-2 sm:pl-3 pr-1.5 sm:pr-2 py-1 sm:py-1.5 rounded-xl hover:bg-gray-100/80 transition-all duration-200 shrink-0">
+      <div className="flex items-center gap-1 sm:gap-1.5">
+        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+        <span className="text-[10px] sm:text-xs text-gray-700 font-extrabold capitalize select-none max-w-[50px] sm:max-w-[120px] truncate">
+          {displayName}
         </span>
       </div>
       
       <button
         onClick={handleLogout}
         disabled={loggingOut}
-        className="bg-white hover:bg-red-50 text-red-600 hover:text-red-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-red-200 transition-all duration-150 shadow-sm active:scale-95 disabled:opacity-50"
+        className="bg-white hover:bg-red-50 text-red-600 hover:text-red-700 text-[10px] sm:text-xs font-extrabold px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-gray-200 hover:border-red-200 transition-all duration-150 shadow-sm active:scale-95 disabled:opacity-50 shrink-0"
       >
-        {loggingOut ? "Leaving..." : "Logout"}
+        {loggingOut ? "..." : "Logout"}
       </button>
     </div>
   );

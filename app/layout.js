@@ -79,11 +79,11 @@ export default async function RootLayout({ children }) {
             </div>
 
             {/* Right: Actions and User Status */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
               {/* Conditional validation checking if dashboard link visibility targets active admin user role */}
               {user && user.role === "admin" && (
-                <Link href="/admin" className="text-xs font-black uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1.5 rounded-lg border border-purple-100 transition hover:bg-purple-100/50">
-                  Admin Panel
+                <Link href="/admin" className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-purple-600 bg-purple-50 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-purple-100 transition hover:bg-purple-100/50 shrink-0">
+                  Admin
                 </Link>
               )}
 

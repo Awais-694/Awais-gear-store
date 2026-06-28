@@ -55,10 +55,11 @@ export default function NavbarCart() {
       {/* 🛒 CART TRIGGER BUTTON */}
       <button
         onClick={() => setIsOpen(true)}
-        className="relative p-2 text-gray-650 hover:text-black transition-colors duration-150 flex items-center gap-1.5 border border-gray-150 rounded-xl px-3 bg-gray-50/50 hover:bg-gray-50 cursor-pointer shadow-sm"
+        className="relative p-1.5 sm:p-2 text-gray-700 hover:text-black transition-colors duration-150 flex items-center gap-1 sm:gap-1.5 border border-gray-100 rounded-xl px-2.5 sm:px-3 bg-gray-50/50 hover:bg-gray-50 cursor-pointer shadow-sm shrink-0"
       >
-        <span className="text-xs font-bold uppercase tracking-wider">Cart</span>
-        <span className="bg-black text-white text-[10px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center">
+        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider hidden sm:inline-block">Cart</span>
+        <span className="inline-block sm:hidden text-xs">🛒</span>
+        <span className="bg-black text-white text-[9px] sm:text-[10px] font-black w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center shrink-0">
           {totalItems}
         </span>
       </button>
