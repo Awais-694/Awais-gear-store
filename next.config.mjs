@@ -1,7 +1,14 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com', // Cloudinary integration point
+      },
+    ],
+  },
 };
 
 export default nextConfig;
