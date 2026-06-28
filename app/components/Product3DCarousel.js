@@ -32,7 +32,9 @@ export default function Product3DCarousel({ products, userRole }) {
 
     localStorage.setItem("awais_cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cart-updated"));
-    alert(`🛒 Added ${product.title} to cart!`);
+    window.dispatchEvent(new CustomEvent("show-toast", {
+      detail: { message: `Added ${product.title} to cart!`, type: "success" }
+    }));
   };
 
   const handleDeleteProduct = async (product) => {

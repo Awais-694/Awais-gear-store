@@ -19,6 +19,9 @@ export default function ProductCard({ product, userRole }) {
 
     localStorage.setItem("awais_cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cart-updated"));
+    window.dispatchEvent(new CustomEvent("show-toast", {
+      detail: { message: `Added ${product.title} to cart!`, type: "success" }
+    }));
   };
 
   const handleDeleteProduct = async () => {

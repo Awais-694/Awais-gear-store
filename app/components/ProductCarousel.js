@@ -93,7 +93,9 @@ export default function ProductCarousel({ products }) {
               }
               localStorage.setItem("awais_cart", JSON.stringify(cart));
               window.dispatchEvent(new Event("cart-updated"));
-              alert("🛒 Added to cart!");
+              window.dispatchEvent(new CustomEvent("show-toast", {
+                detail: { message: `Added ${products[currentIndex].title} to cart!`, type: "success" }
+              }));
             }}
             className="bg-white text-black hover:bg-gray-100 px-5 py-3 rounded-2xl text-xs font-black uppercase tracking-wider transition active:scale-[0.98] cursor-pointer"
           >

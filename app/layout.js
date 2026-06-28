@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import NavbarUser from "./components/NavbarUser";
 import NavbarCart from "./components/NavbarCart";
+import Toast from "./components/Toast";
 
 const interFont = Inter({ subsets: ["latin"] });
 
@@ -105,6 +106,9 @@ export default async function RootLayout({ children }) {
         <footer className="bg-gray-900 text-gray-400 text-center py-8 border-t border-gray-800 text-xs font-medium">
           <p>© 2026 Awais Engineering Core. Protected under HttpOnly Session Cookie Protocol.</p>
         </footer>
+
+        {/* Global Toast Notification System */}
+        <Toast />
 
       </body>
     </html>
