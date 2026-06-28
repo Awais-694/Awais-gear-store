@@ -74,7 +74,7 @@ export default async function RootLayout({ children }) {
                   </div>
                 </div>
 
-                <Link href="/?filter=new" className="hover:text-black transition-colors duration-150">New</Link>
+                <Link href={user && user.role === "admin" ? "/admin" : "/?filter=new"} className="hover:text-black transition-colors duration-150">New</Link>
               </div>
             </div>
 
