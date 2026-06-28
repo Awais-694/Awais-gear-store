@@ -1,10 +1,10 @@
 // app/admin/page.js
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function AdminDashboardPage() {
+function AdminDashboardContent() {
   const [productData, setProductData] = useState({
     title: "",
     description: "",
@@ -20,6 +20,39 @@ export default function AdminDashboardPage() {
   const [saving, setSaving] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ type: "", text: "" });
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const editId = searchParams.get("edit");
+
+  // Load product if edit ID is provided
+  useEffect(() => {
+    if (editId) {
+      const fetchProduct = async () => {
+        try {
+          const res = await fetch(`/api/products/${editId}`);
+          const data = await res.json();
+          if (data.success) {
+            const prod = data.data;
+            setProductData({
+              title: prod.title || "",
+              description: prod.description || "",
+              price: prod.price || "",
+              category: prod.category || "T-Shirt",
+              stock: prod.stock || "15",
+              isNewProduct: prod.isNewProduct || false,
+            });
+            setSelectedSizes(prod.sizes || []);
+            setSelectedColors(prod.colors || []);
+            setImagePreview(prod.image || "");
+          } else {
+            setStatusMsg({ type: "error", text: "Product details fetch failed!" });
+          }
+        } catch (err) {
+          setStatusMsg({ type: "error", text: "Failed to connect to database API!" });
+        }
+      };
+      fetchProduct();
+    }
+  }, [editId]);
 
   const handleSizeChange = (size) => {
     if (selectedSizes.includes(size)) {
@@ -50,36 +83,44 @@ export default function AdminDashboardPage() {
     setSaving(true);
     setStatusMsg({ type: "", text: "" });
 
-    if (!imageFile) {
+    if (!imageFile && !imagePreview) {
       setStatusMsg({ type: "error", text: "Bhai, product image upload karna zaroori hai!" });
       setSaving(false);
       return;
     }
 
     try {
-      // 1. Upload File to Cloudinary via server API
-      const formData = new FormData();
-      formData.append("file", imageFile);
+      let imageUrl = imagePreview;
 
-      const uploadRes = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
+      // 1. Upload File to Cloudinary if a new file is chosen
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
 
-      const uploadData = await uploadRes.json();
-      if (!uploadData.success) {
-        setStatusMsg({ type: "error", text: `Image Upload Error: ${uploadData.message}` });
-        setSaving(false);
-        return;
+        const uploadRes = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const uploadData = await uploadRes.json();
+        if (!uploadData.success) {
+          setStatusMsg({ type: "error", text: `Image Upload Error: ${uploadData.message}` });
+          setSaving(false);
+          return;
+        }
+        imageUrl = uploadData.url;
       }
 
       // 2. Submit product details to MongoDB
-      const res = await fetch("/api/products", {
-        method: "POST",
+      const url = editId ? `/api/products/${editId}` : "/api/products";
+      const method = editId ? "PUT" : "POST";
+
+      const res = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...productData,
-          image: uploadData.url,
+          image: imageUrl,
           sizes: selectedSizes,
           colors: selectedColors,
         }),
@@ -88,14 +129,16 @@ export default function AdminDashboardPage() {
       const data = await res.json();
 
       if (data.success) {
-        setStatusMsg({ type: "success", text: "🚀 Product successfully created and uploaded!" });
+        setStatusMsg({ type: "success", text: editId ? "🚀 Product updated successfully!" : "🚀 Product successfully created and uploaded!" });
         
-        // Reset states
-        setProductData({ title: "", description: "", price: "", category: "T-Shirt", stock: "15", isNewProduct: false });
-        setSelectedSizes([]);
-        setSelectedColors([]);
-        setImageFile(null);
-        setImagePreview("");
+        // Reset states if not editing
+        if (!editId) {
+          setProductData({ title: "", description: "", price: "", category: "T-Shirt", stock: "15", isNewProduct: false });
+          setSelectedSizes([]);
+          setSelectedColors([]);
+          setImageFile(null);
+          setImagePreview("");
+        }
         
         setTimeout(() => {
           router.push("/");
@@ -144,11 +187,15 @@ export default function AdminDashboardPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
         <div className="relative z-10 space-y-2">
           <span className="text-[10px] font-bold tracking-widest uppercase bg-white/10 px-3 py-1 rounded-full text-blue-300">
-            Store Controller Panel
+            {editId ? "Edit Item Mode" : "Store Controller Panel"}
           </span>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Upload Premium Merchandise</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+            {editId ? "Edit Store Item" : "Upload Premium Merchandise"}
+          </h1>
           <p className="text-gray-400 text-xs md:text-sm max-w-xl font-medium">
-            Publish new arrivals, specify sizes/colors parameters, and sync stock availability in real time.
+            {editId 
+              ? "Modify the selected item's attributes, images, stock count, and metadata safely."
+              : "Publish new arrivals, specify sizes/colors parameters, and sync stock availability in real time."}
           </p>
         </div>
       </div>
@@ -366,7 +413,7 @@ export default function AdminDashboardPage() {
                 disabled={saving}
                 className="w-full bg-gradient-to-r from-gray-900 to-black text-white font-extrabold text-xs px-8 py-4 rounded-xl uppercase tracking-wider hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 shadow-md"
               >
-                {saving ? "Uploading Image & Synchronizing..." : "Publish Item Live 🚀"}
+                {saving ? "Saving Changes..." : editId ? "Update Item Details 🚀" : "Publish Item Live 🚀"}
               </button>
             </div>
 
@@ -376,5 +423,13 @@ export default function AdminDashboardPage() {
       </form>
 
     </div>
+  );
+}
+
+export default function AdminDashboardPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-400 font-bold">Admin Panel Loading...</div>}>
+      <AdminDashboardContent />
+    </Suspense>
   );
 }

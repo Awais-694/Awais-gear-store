@@ -2,9 +2,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Product3DCarousel({ products, userRole }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev === products.length - 1 ? 0 : prev + 1));
@@ -41,9 +43,24 @@ export default function Product3DCarousel({ products, userRole }) {
     const confirmDelete = confirm("Awais Bhai, kya aap waqai yeh item store se hatana chahte hain?");
     if (!confirmDelete) return;
     try {
-      alert("Backend Security validation verified. Item safely removed from inventory cluster!");
+      const res = await fetch(`/api/products/${product._id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: "Product safely removed from inventory!", type: "success" }
+        }));
+        router.refresh();
+      } else {
+        window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: data.message, type: "error" }
+        }));
+      }
     } catch (error) {
-      alert("Execution failure!");
+      window.dispatchEvent(new CustomEvent("show-toast", {
+        detail: { message: "Execution failure!", type: "error" }
+      }));
     }
   };
 
@@ -128,7 +145,7 @@ export default function Product3DCarousel({ products, userRole }) {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          alert("Edit item...");
+                          router.push(`/admin?edit=${product._id}`);
                         }}
                         className="bg-white text-gray-800 text-[8px] font-black px-2 py-0.5 rounded hover:bg-gray-100"
                       >

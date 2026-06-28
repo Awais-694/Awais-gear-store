@@ -1,6 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function ProductCard({ product, userRole }) {
+  const router = useRouter();
+
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("awais_cart") || "[]");
     const existingItem = cart.find((item) => item._id === product._id);
@@ -29,9 +33,24 @@ export default function ProductCard({ product, userRole }) {
     if (!confirmDelete) return;
 
     try {
-      alert("Backend Security validation verified. Item safely removed from inventory cluster!");
+      const res = await fetch(`/api/products/${product._id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+      if (data.success) {
+        window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: "Product safely removed from inventory!", type: "success" }
+        }));
+        router.refresh();
+      } else {
+        window.dispatchEvent(new CustomEvent("show-toast", {
+          detail: { message: data.message, type: "error" }
+        }));
+      }
     } catch (error) {
-      alert("Execution failure!");
+      window.dispatchEvent(new CustomEvent("show-toast", {
+        detail: { message: "Execution failure!", type: "error" }
+      }));
     }
   };
 
@@ -90,7 +109,7 @@ export default function ProductCard({ product, userRole }) {
                 </span>
                 <div className="flex gap-1">
                   <button
-                    onClick={() => alert("Edit item...")}
+                    onClick={() => router.push(`/admin?edit=${product._id}`)}
                     className="bg-white border border-gray-200 text-gray-700 text-[8px] font-black px-2 py-0.5 rounded hover:bg-gray-50"
                   >
                     Edit
