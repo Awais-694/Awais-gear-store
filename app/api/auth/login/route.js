@@ -12,19 +12,19 @@ export async function POST(request) {
     const { email, password } = body;
 
     if (!email || !password) {
-      return NextResponse.json({ success: false, message: "Email aur Password dono lazmi hain!" }, { status: 400 });
+      return NextResponse.json({ success: false, message: "Email and password are both required!" }, { status: 400 });
     }
 
     // 1. Dhoondo user ko
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user) {
-      return NextResponse.json({ success: false, message: "Ghalt email ya password!" }, { status: 401 });
+      return NextResponse.json({ success: false, message: "Invalid email address or password. Please try again." }, { status: 401 });
     }
 
     // 2. Verify hashed password comparison 🔑
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return NextResponse.json({ success: false, message: "Ghalt email ya password!" }, { status: 401 });
+      return NextResponse.json({ success: false, message: "Invalid email address or password. Please try again." }, { status: 401 });
     }
 
     // 3. Create Session Payload Matrix
