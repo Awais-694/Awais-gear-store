@@ -1,16 +1,18 @@
-// app/(auth)/login/page.js
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function LoginPage() {
+function LoginContent() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ type: "", text: "" });
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const redirectUrl = searchParams.get("redirect") || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ export default function LoginPage() {
           if (data.user.role === "admin") {
             router.push("/admin"); // If credentials matched admin identity
           } else {
-            router.push("/"); // Standard interface node for user catalog
+            router.push(redirectUrl); // Route to target redirect url or home
           }
           router.refresh(); // Hard layout context refresh to re-evaluate headers cookies
         }, 1000);
@@ -166,5 +168,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-500 font-bold">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

@@ -5,6 +5,8 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import ProductsCatalog from "../../components/ProductsCatalog";
 
+import { redirect } from "next/navigation";
+
 export const revalidate = 0; // Dynamic server rendering
 
 // Extract user identity role from database session cookies
@@ -24,6 +26,11 @@ async function getAuthenticatedUserRole() {
 
 export default async function AllGoodsPage() {
   const userRole = await getAuthenticatedUserRole();
+  
+  if (!userRole) {
+    redirect("/login?redirect=/collections/all-goods");
+  }
+
   let productsList = [];
   
   try {

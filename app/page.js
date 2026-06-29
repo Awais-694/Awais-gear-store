@@ -38,11 +38,11 @@ export default async function StoreHomePage() {
       {/* Wohven-Inspired Modern Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#f4f6f2] p-4 sm:p-6 rounded-[32px] items-stretch overflow-hidden border border-neutral-200/50">
         
-        {/* Left Side: Premium 4-Image Asymmetric Grid Collage */}
+        {/* Left Side: Premium 4-Image Asymmetric Grid Collage - All items clickable to collections */}
         <div className="lg:col-span-7 grid grid-cols-4 grid-rows-2 gap-3 min-h-[400px] sm:min-h-[520px]">
           
           {/* Main Large Image (White T-Shirt) - Spans 2 cols, 2 rows */}
-          <div className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl group shadow-sm">
+          <Link href="/collections/all-goods" className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl group shadow-sm cursor-pointer block">
             <img
               src="/hero3.jpg"
               alt="Barakah Mindset Premium Streetwear"
@@ -52,10 +52,10 @@ export default async function StoreHomePage() {
             <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm text-black text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow-sm">
               Collection 01
             </span>
-          </div>
+          </Link>
 
           {/* Medium Image (Blue T-Shirt) - Spans 2 cols, 1 row */}
-          <div className="col-span-2 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm">
+          <Link href="/collections/all-goods" className="col-span-2 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm cursor-pointer block">
             <img
               src="/hero2.jpg"
               alt="Minimalist T-Shirt Design"
@@ -65,27 +65,27 @@ export default async function StoreHomePage() {
             <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm text-black text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider shadow-sm">
               New Wave
             </span>
-          </div>
+          </Link>
 
           {/* Small Image A (Brown T-Shirt) - Spans 1 col, 1 row */}
-          <div className="col-span-1 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm">
+          <Link href="/collections/all-goods" className="col-span-1 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm cursor-pointer block">
             <img
               src="/hero1.jpg"
               alt="Urban Streetwear"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
-          </div>
+          </Link>
 
           {/* Small Image B (4th T-Shirt) - Spans 1 col, 1 row */}
-          <div className="col-span-1 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm">
+          <Link href="/collections/all-goods" className="col-span-1 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm cursor-pointer block">
             <img
               src="/hero4.jpg"
               alt="Custom Streetwear Edition"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
-          </div>
+          </Link>
         </div>
 
         {/* Right Side: Cozy Minimalist Text Card */}
@@ -129,6 +129,9 @@ export default async function StoreHomePage() {
               alt="T-Shirt Collection Grid Showcase"
               className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.01]"
             />
+            <span className="absolute top-4 right-4 bg-black/85 backdrop-blur-sm text-white text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300">
+              Click Me ↗
+            </span>
           </Link>
         </div>
       </div>
@@ -150,6 +153,9 @@ export default async function StoreHomePage() {
                 alt="Premium Fabric Close-up"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <span className="absolute top-3 right-3 bg-black/85 backdrop-blur-sm text-white text-[8px] font-black px-2.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300">
+                Click Me ↗
+              </span>
             </div>
             <div className="space-y-2 px-1">
               <h3 className="text-xl font-black text-neutral-900 uppercase tracking-tight">
@@ -169,6 +175,9 @@ export default async function StoreHomePage() {
                 alt="Comfort Collar Detail"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <span className="absolute top-3 right-3 bg-black/85 backdrop-blur-sm text-white text-[8px] font-black px-2.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300">
+                Click Me ↗
+              </span>
             </div>
             <div className="space-y-2 px-1">
               <h3 className="text-xl font-black text-neutral-900 uppercase tracking-tight">
@@ -188,6 +197,9 @@ export default async function StoreHomePage() {
                 alt="Forever Print Detail"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <span className="absolute top-3 right-3 bg-black/85 backdrop-blur-sm text-white text-[8px] font-black px-2.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300">
+                Click Me ↗
+              </span>
             </div>
             <div className="space-y-2 px-1">
               <h3 className="text-xl font-black text-neutral-900 uppercase tracking-tight">
