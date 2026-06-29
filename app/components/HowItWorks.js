@@ -36,11 +36,11 @@ export default function HowItWorks() {
     }
   ];
 
-  // Auto-play interval: cycles through all 9 images (every 1.5 seconds)
+  // Auto-play interval: cycles through all 9 images (every 0.5 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length);
-    }, 1500);
+    }, 500);
 
     return () => clearInterval(timer);
   }, [images.length]);

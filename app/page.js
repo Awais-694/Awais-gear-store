@@ -41,10 +41,10 @@ export default async function StoreHomePage() {
         {/* Left Side: Premium 4-Image Asymmetric Grid Collage */}
         <div className="lg:col-span-7 grid grid-cols-4 grid-rows-2 gap-3 min-h-[400px] sm:min-h-[520px]">
           
-          {/* Main Large Image (Green T-Shirt) - Spans 2 cols, 2 rows */}
+          {/* Main Large Image (White T-Shirt) - Spans 2 cols, 2 rows */}
           <div className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl group shadow-sm">
             <img
-              src="/hero1.jpg"
+              src="/hero3.jpg"
               alt="Barakah Mindset Premium Streetwear"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -67,10 +67,10 @@ export default async function StoreHomePage() {
             </span>
           </div>
 
-          {/* Small Image A (White T-Shirt) - Spans 1 col, 1 row */}
+          {/* Small Image A (Brown T-Shirt) - Spans 1 col, 1 row */}
           <div className="col-span-1 row-span-1 relative overflow-hidden rounded-2xl group shadow-sm">
             <img
-              src="/hero3.jpg"
+              src="/hero1.jpg"
               alt="Urban Streetwear"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -89,13 +89,13 @@ export default async function StoreHomePage() {
         </div>
 
         {/* Right Side: Cozy Minimalist Text Card */}
-        <div className="lg:col-span-5 bg-[#e4e8e1] rounded-2xl p-8 sm:p-12 flex flex-col justify-center space-y-6 shadow-sm border border-[#d8dcd5]">
+        <div className="lg:col-span-5 bg-[#e4e8e1] rounded-2xl p-6 sm:p-12 flex flex-col justify-center space-y-6 shadow-sm border border-[#d8dcd5]">
           <span className="text-[10px] bg-black/5 text-neutral-800 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider self-start border border-black/5">
             Premium Streetwear
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-900 leading-[1.1] uppercase">
-            Not too showy. <br />
-            Not too stuffy. <br />
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-900 leading-[1.15] uppercase">
+            Not too showy. <br className="hidden sm:inline" />
+            Not too stuffy. <br className="hidden sm:inline" />
             Not too anything.
           </h1>
           <p className="text-xs sm:text-sm text-neutral-600 font-medium leading-relaxed">
@@ -121,15 +121,15 @@ export default async function StoreHomePage() {
           </p>
         </div>
 
-        {/* High-Resolution Flat-lay Showcase Banner */}
+        {/* High-Resolution Flat-lay Showcase Banner - Click to navigate */}
         <div className="max-w-6xl mx-auto px-4">
-          <div className="relative w-full rounded-[24px] overflow-hidden border border-neutral-200/40 shadow-md group">
+          <Link href="/collections/all-goods" className="block relative w-full rounded-[24px] overflow-hidden border border-neutral-200/40 shadow-md group cursor-pointer">
             <img
               src="/showcase_banner.jpg"
               alt="T-Shirt Collection Grid Showcase"
               className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.01]"
             />
-          </div>
+          </Link>
         </div>
       </div>
 
@@ -142,8 +142,8 @@ export default async function StoreHomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1: Premium Fabric */}
-          <div className="space-y-4 group">
+          {/* Card 1: Premium Fabric - Click to navigate */}
+          <Link href="/collections/all-goods" className="space-y-4 group block cursor-pointer">
             <div className="relative aspect-square overflow-hidden rounded-[24px] bg-neutral-100 border border-neutral-200/40">
               <img
                 src="/hero7.jpg"
@@ -159,10 +159,10 @@ export default async function StoreHomePage() {
                 Super soft ringspun cotton is the star of our tees, offering unparalleled comfort and durability.
               </p>
             </div>
-          </div>
+          </Link>
 
-          {/* Card 2: Comfort Collar */}
-          <div className="space-y-4 group">
+          {/* Card 2: Comfort Collar - Click to navigate */}
+          <Link href="/collections/all-goods" className="space-y-4 group block cursor-pointer">
             <div className="relative aspect-square overflow-hidden rounded-[24px] bg-neutral-100 border border-neutral-200/40">
               <img
                 src="/hero8.jpg"
@@ -178,10 +178,10 @@ export default async function StoreHomePage() {
                 Our tagless, finely ribbed collar will hold its shape wear after wear without scratching.
               </p>
             </div>
-          </div>
+          </Link>
 
-          {/* Card 3: Forever Print */}
-          <div className="space-y-4 group">
+          {/* Card 3: Forever Print - Click to navigate */}
+          <Link href="/collections/all-goods" className="space-y-4 group block cursor-pointer">
             <div className="relative aspect-square overflow-hidden rounded-[24px] bg-neutral-100 border border-neutral-200/40">
               <img
                 src="/hero9.jpg"
@@ -197,7 +197,7 @@ export default async function StoreHomePage() {
                 High-quality water-based inks mean our graphics stay vibrant, soft to the touch, and never crack.
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 

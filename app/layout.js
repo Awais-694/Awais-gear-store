@@ -38,9 +38,12 @@ export default async function RootLayout({ children }) {
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             
             {/* Left: Navigation links */}
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-3 sm:gap-8">
               <Link href="/" className="text-xl font-black tracking-widest text-black uppercase">
                 AWAIS
+              </Link>
+              <Link href="/" className="md:hidden text-[9px] font-black uppercase tracking-wider text-neutral-600 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200/60 px-2.5 py-1 rounded-lg transition-colors">
+                Home
               </Link>
               <div className="hidden md:flex items-center gap-6 font-bold text-xs uppercase tracking-wider text-gray-500">
                 <Link href="/" className="hover:text-black transition-colors duration-150">Home</Link>
