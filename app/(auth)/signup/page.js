@@ -29,7 +29,7 @@ export default function SignupPage() {
       if (data.success) {
         setStatusMsg({ type: "success", text: data.message || "Account created successfully!" });
         setTimeout(() => {
-          router.push("/login"); // Successful creation redirects to login
+          router.push("/login?signup_success=true"); // Successful creation redirects to login
         }, 1200);
       } else {
         setStatusMsg({ type: "error", text: data.message || "Registration failed!" });

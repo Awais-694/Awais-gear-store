@@ -14,6 +14,8 @@ function LoginContent() {
   
   const redirectUrl = searchParams.get("redirect") || "/";
 
+  const isSignupSuccess = searchParams.get("signup_success") === "true";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -60,10 +62,14 @@ function LoginContent() {
         
         {/* Decorative top gradient accent bar */}
         <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
-
+ 
         <header className="mb-5 text-center">
-          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">Welcome Back</h1>
-          <p className="text-xs text-gray-500 mt-1">Sign in to continue shopping</p>
+          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+            {isSignupSuccess ? "Welcome Back" : "Sign In"}
+          </h1>
+          <p className="text-xs text-gray-500 mt-1">
+            {isSignupSuccess ? "Sign in to continue shopping" : "Access your account to start shopping"}
+          </p>
         </header>
 
         {/* Styled inline notification alert box */}
